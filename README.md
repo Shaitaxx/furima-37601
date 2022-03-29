@@ -7,6 +7,10 @@
 | name               | string | null: false |
 | email              | string | null: false |
 | encrypted_password | string | null: false |
+| family-name        | string | null: false |
+| first-name         | string | null: false |
+| family-name-kana   | string | null: false |
+| first-name-kana    | string | null: false |
 | birthday           | string | null: false |
 
 ### Association
@@ -16,18 +20,19 @@
 
 ## goods テーブル
 
-| Column      | Type       | Options           |
-| ----------- | ---------- | ----------------- |
-| exhibitor   | string     | null: false       |
-| name        | text       | null: false       |
-| explanation | string     | null: false       |
-| status      | string     | null: false       |
-| charge      | string     | null: false       |
-| region      | string     | null: false       |
-| date        | string     | null: false       |
-| price       | integer    | null: false       |
+| Column           | Type       | Options                        |
+| ---------------- | ---------- | ------------------------------ |
+| exhibitor        | string     | null: false                    |
+| name             | string     | null: false                    |
+| explanation      | text       | null: false                    |
+| category_id      | integer    | null: false                    |
+| status_id        | integer    | null: false                    |
+| charge_id        | integer    | null: false                    |
+| region_id        | integer    | null: false                    |
+| shipping_date_id | integer    | null: false                    |
+| price            | integer    | null: false                    |
 
-| user        | references | foreign_key: true |
+| user             | references | null: false, foreign_key: true |
 
 ### Association
 
@@ -36,10 +41,10 @@
 
 ## purchases テーブル
 
-| Column      | Type       | Options           |
-| ----------- | ---------- | ----------------- |
-| user        | references | foreign_key: true |
-| good        | references | foreign_key: true |
+| Column      | Type       | Options                        |
+| ----------- | ---------- | ------------------------------ |
+| user        | references | null: false, foreign_key: true |
+| good        | references | null: false, foreign_key: true |
 
 ### Association
 
@@ -49,17 +54,16 @@
 
 ## shippers テーブル
 
-| Column      | Type       | Options           |
-| ----------- | ---------- | ----------------- |
-| postcode    | string     | null: false       |
-| prefecture  | string     | null: false       |
-| city        | string     | null: false       |
-| address     | string     | null: false       |
-| building    | string     |                   |
-| phonenumber | string     | null: false       |
+| Column        | Type       | Options                        |
+| ------------- | ---------- | ------------------------------ |
+| postcode      | string     | null: false                    |
+| region_id     | integer    | null: false                    |
+| city          | string     | null: false                    |
+| address       | string     | null: false                    |
+| building      | string     |                                |
+| phonenumber   | string     | null: false                    |
 
-| user        | references | foreign_key: true |
-| good        | references | foreign_key: true |
+| purchase      | references | null: false, foreign_key: true |
 
 ### Association
 
