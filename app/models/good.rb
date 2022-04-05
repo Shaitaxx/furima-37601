@@ -17,6 +17,6 @@ class Good < ApplicationRecord
   validates :charge_id, presence: true, numericality: { other_than: 1 , message: "can't be blank" }
   validates :region_id, presence: true, numericality: { other_than: 1 , message: "can't be blank" }
   validates :shipping_date_id, presence: true, numericality: { other_than: 1 , message: "can't be blank" }
-  validates :price, presence: true
+  validates :price, presence: true, numericality: {only_integer: true, greater_than_or_equal_to: 300, less_than_or_equal_to: 9999999, message: "is invalid"}
   validates :user, presence: true
 end
