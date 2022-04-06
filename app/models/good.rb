@@ -12,12 +12,15 @@ class Good < ApplicationRecord
   validates :image, presence: true
   validates :name, presence: true
   validates :explanation, presence: true
-  validates :category_id, presence: true, numericality: { other_than: 1, message: "can't be blank" }
-  validates :status_id, presence: true, numericality: { other_than: 1, message: "can't be blank" }
-  validates :charge_id, presence: true, numericality: { other_than: 1, message: "can't be blank" }
-  validates :region_id, presence: true, numericality: { other_than: 1, message: "can't be blank" }
-  validates :shipping_date_id, presence: true, numericality: { other_than: 1, message: "can't be blank" }
+  validates :category_id, presence: true
+  validates :status_id, presence: true
+  validates :charge_id, presence: true
+  validates :region_id, presence: true
+  validates :shipping_date_id, presence: true
   validates :price, presence: true,
                     numericality: { only_integer: true, greater_than_or_equal_to: 300, less_than_or_equal_to: 9_999_999, message: 'is invalid' }
-  validates :user, presence: true
+
+  with_options numericality: {other_than: 1, message: "can't be blank"} do
+    validates :category_id, :status_id, :charge_id, :region_id, :shipping_date_id
+  end
 end
