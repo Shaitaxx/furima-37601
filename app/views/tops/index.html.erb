@@ -127,13 +127,11 @@
       新規投稿商品
     </div>
     <ul class='item-lists'>
-
+    <% @goods.each do |good| %>
       <li class='list'>
-        <% @goods.each do |good| %>
-          <%= link_to "#" do %>
-            <div class='item-img-content'>
-              <%= image_tag good.image, class: "item-img" %>
-
+        <%= link_to "#" do %>
+          <div class='item-img-content'>
+            <%= image_tag good.image, class: "item-img" %>
               <%# 商品が売れていればsold outを表示しましょう %>
               <%# if  %>
                 <div class='sold-out'>
@@ -141,26 +139,23 @@
                 </div>
               <%# end %>
               <%# //商品が売れていればsold outを表示しましょう %>
-
-            </div>
-            <div class='item-info'>
-              <h3 class='item-name'>
-                <%= good.name %>
-              </h3>
-              <div class='item-price'>
-                <span><%= good.price %>円<br><%= good.charge.name %></span>
-                <div class='star-btn'>
-                  <%= image_tag "star.png", class:"star-icon" %>
-                  <span class='star-count'>0</span>
-                </div>
+          </div>
+          <div class='item-info'>
+            <h3 class='item-name'>
+              <%= good.name %>
+            </h3>
+            <div class='item-price'>
+              <span><%= good.price %>円<br><%= good.charge.name %></span>
+              <div class='star-btn'>
+                <%= image_tag "star.png", class:"star-icon" %>
+                <span class='star-count'>0</span>
               </div>
             </div>
-          <% end %>
+          </div>
         <% end %>
       </li>
-
-      <%# 商品がない場合は以下のダミー商品が表示されるようにしましょう %>
-      <%# 商品がある場合は表示されないようにしましょう %>
+    <% end %>
+    
       <li class='list'>
         <%= link_to '#' do %>
         <%= image_tag "https://tech-master.s3.amazonaws.com/uploads/curriculums/images/Rails1-4/sample.jpg", class: "item-img" %>
@@ -178,8 +173,6 @@
         </div>
         <% end %>
       </li>
-      <%# //商品がある場合は表示されないようにしましょう %>
-      <%# //商品がない場合は以下のダミー商品が表示されるようにしましょう %>
     </ul>
   </div>
   <%# /商品一覧 %>

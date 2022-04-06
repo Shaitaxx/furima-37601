@@ -2,7 +2,7 @@ class TopsController < ApplicationController
   before_action :authenticate_user!, except: :index
 
   def index
-    @goods = Good.all
+    @goods = Good.all.order("created_at DESC")
   end
 
   def new
