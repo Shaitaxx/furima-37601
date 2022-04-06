@@ -76,7 +76,7 @@ RSpec.describe Good, type: :model do
       it 'userが存在しなければ登録できないこと' do
         @good.user = nil
         @good.valid?
-        expect(@good.errors.full_messages).to include("User must exist")
+        expect(@good.errors.full_messages).to include('User must exist')
       end
     end
   end
