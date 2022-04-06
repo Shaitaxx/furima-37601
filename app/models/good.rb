@@ -9,18 +9,12 @@ class Good < ApplicationRecord
   belongs_to :user
   has_one_attached :image
 
-  validates :image, presence: true
-  validates :name, presence: true
-  validates :explanation, presence: true
-  validates :category_id, presence: true
-  validates :status_id, presence: true
-  validates :charge_id, presence: true
-  validates :region_id, presence: true
-  validates :shipping_date_id, presence: true
-  validates :price, presence: true,
-                    numericality: { only_integer: true, greater_than_or_equal_to: 300, less_than_or_equal_to: 9_999_999, message: 'is invalid' }
+  validates :price,numericality: { only_integer: true, greater_than_or_equal_to: 300, less_than_or_equal_to: 9_999_999, message: 'is invalid' }
 
   with_options numericality: { other_than: 1, message: "can't be blank" } do
     validates :category_id, :status_id, :charge_id, :region_id, :shipping_date_id
+  end
+  with_options presence: true do
+    validates :image, :name, :explanation, :category_id, :status_id, :charge_id, :region_id, :shipping_date_id, :price
   end
 end
