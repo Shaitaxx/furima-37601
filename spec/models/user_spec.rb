@@ -49,7 +49,7 @@ RSpec.describe User, type: :model do
         @user.password = 'ああああああ'
         @user.password_confirmation = 'ああああああ'
         @user.valid?
-        expect(@user.errors.full_messages).to include("Password には英字と数字の両方を含めて設定してください")
+        expect(@user.errors.full_messages).to include('Password には英字と数字の両方を含めて設定してください')
       end
       it '英字のみのパスワードでは登録できない' do
         @user.password = 'aaaaaaa'
