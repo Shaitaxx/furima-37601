@@ -61,7 +61,7 @@ RSpec.describe Good, type: :model do
       it '価格は半角数値のみでないと保存できないこと' do
         @good.price = 'あああaaa'
         @good.valid?
-        expect(@good.errors.full_messages).to include("Price is invalid")
+        expect(@good.errors.full_messages).to include('Price is invalid')
       end
     end
   end

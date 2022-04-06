@@ -49,7 +49,7 @@ RSpec.describe User, type: :model do
         @user.password = 'ああああああ'
         @user.password_confirmation = 'ああああああ'
         @user.valid?
-        expect(@user.errors.full_messages).to include("Password には英字と数字の両方を含めて設定してください")
+        expect(@user.errors.full_messages).to include('Password には英字と数字の両方を含めて設定してください')
       end
       it '英字のみのパスワードでは登録できない' do
         @user.password = 'aaaaaaa'
@@ -99,7 +99,7 @@ RSpec.describe User, type: :model do
         @user.first_name = ''
         @user.valid?
         expect(@user.errors.full_messages).to include("First name can't be blank",
-                                                       'First name is invalid. Input full-width characters.')
+                                                      'First name is invalid. Input full-width characters.')
       end
       it 'family_name_kanaは全角(カタカナ)以外では登録できない' do
         @user.family_name_kana = '123456'
