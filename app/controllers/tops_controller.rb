@@ -1,5 +1,5 @@
 class TopsController < ApplicationController
-  before_action :authenticate_user!, except: :index
+  before_action :authenticate_user!, except: [:index, :show]
 
   def index
     @goods = Good.all.order("created_at DESC")
@@ -16,6 +16,10 @@ class TopsController < ApplicationController
     else
       render :new
     end
+  end
+
+  def show
+    @good = Good.find(params[:id])
   end
 
   private
