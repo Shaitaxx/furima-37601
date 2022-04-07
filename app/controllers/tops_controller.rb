@@ -18,6 +18,10 @@ class TopsController < ApplicationController
     end
   end
 
+  def show
+    @good = Good.find(params[:id])
+  end
+
   private
 
   def good_params
