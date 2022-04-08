@@ -34,6 +34,11 @@ class GoodsController < ApplicationController
     end
   end
 
+  def destroy
+    @good.destroy
+    redirect_to root_path
+  end
+
   private
 
   def good_params
