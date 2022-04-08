@@ -35,8 +35,10 @@ class GoodsController < ApplicationController
   end
 
   def destroy
-    @good.destroy
-    redirect_to root_path
+    if user_signed_in?
+      @good.destroy
+      redirect_to root_path
+    end
   end
 
   private
