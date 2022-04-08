@@ -34,6 +34,13 @@ class GoodsController < ApplicationController
     end
   end
 
+  def destroy
+    if current_user == @good.user
+      @good.destroy
+      redirect_to root_path
+    end
+  end
+
   private
 
   def good_params
