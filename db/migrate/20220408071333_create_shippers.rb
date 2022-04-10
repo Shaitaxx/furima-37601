@@ -3,7 +3,7 @@ class CreateShippers < ActiveRecord::Migration[6.0]
     create_table :shippers do |t|
       t.string      :postcode,     null: false
       t.integer     :region_id,    null: false
-      t.string      :region_id,    null: false
+      t.string      :city,         null: false
       t.string      :address,      null: false
       t.string      :building
       t.string      :phonenumber,  null: false
