@@ -1,11 +1,12 @@
 class OrdersController < ApplicationController
+  before_action :move_to_find, only: [:index, :create]
+  before_action :move_to_index, only: :index
+
   def index
     @order = Order.new
-    @good = Good.find(params[:good_id])
   end
 
   def create
-    @good = Good.find(params[:good_id])
     @order = Order.new(order_params)
     if @order.valid?
       pay_item
@@ -31,5 +32,18 @@ class OrdersController < ApplicationController
       card: order_params[:token],
       currency: 'jpy'
     )
+  end
+
+  private
+
+  def move_to_find
+    @good = Good.find(params[:good_id])
+  end
+
+  def move_to_index
+    if current_user == @good.user
+      redirect_to root_path
+    end
+    redirect_to root_path unless user_signed_in?
   end
 end

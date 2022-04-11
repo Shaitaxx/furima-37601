@@ -1,7 +1,7 @@
 class GoodsController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
   before_action :move_to_find, except: [:index, :new, :create]
-  before_action :move_to_index, only: :edit
+  before_action :move_to_index, except: [:index, :new, :create, :show, :update, :destroy]
 
   def index
     @goods = Good.all.order('created_at DESC')
