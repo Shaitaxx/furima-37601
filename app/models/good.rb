@@ -9,7 +9,9 @@ class Good < ApplicationRecord
   belongs_to :user
   has_one_attached :image
 
-  validates :price,numericality: { only_integer: true, greater_than_or_equal_to: 300, less_than_or_equal_to: 9_999_999, message: 'is invalid' }
+  validates :price,
+            numericality: { only_integer: true, greater_than_or_equal_to: 300, less_than_or_equal_to: 9_999_999,
+                            message: 'is invalid' }
 
   with_options numericality: { other_than: 1, message: "can't be blank" } do
     validates :category_id, :status_id, :charge_id, :region_id, :shipping_date_id

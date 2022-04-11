@@ -25,7 +25,7 @@ RSpec.describe Order, type: :model do
       it '郵便番号は、「3桁ハイフン4桁」の半角文字列のみ保存可能なこと' do
         @order.postcode = '12345678'
         @order.valid?
-        expect(@order.errors.full_messages).to include("Postcode is invalid. Input half-width character string of 3 digits hyphen 4 digits.")
+        expect(@order.errors.full_messages).to include('Postcode is invalid. Input half-width character string of 3 digits hyphen 4 digits.')
       end
       it '都道府県が必須であること' do
         @order.region_id = ''
@@ -50,9 +50,9 @@ RSpec.describe Order, type: :model do
       it '電話番号は、10桁以上11桁以内の半角数値のみ保存可能なこと' do
         @order.phonenumber = '123aaa123123'
         @order.valid?
-        expect(@order.errors.full_messages).to include("Phonenumber is invalid. Input half-width numbers.")
+        expect(@order.errors.full_messages).to include('Phonenumber is invalid. Input half-width numbers.')
       end
-      it "tokenが空では登録できないこと" do
+      it 'tokenが空では登録できないこと' do
         @order.token = nil
         @order.valid?
         expect(@order.errors.full_messages).to include("Token can't be blank")
