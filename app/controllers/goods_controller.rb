@@ -1,10 +1,10 @@
 class GoodsController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
   before_action :move_to_find, except: [:index, :new, :create]
-  before_action :move_to_index, only: :edit
+  before_action :move_to_index, except: [:index, :new, :create, :show, :update, :destroy]
 
   def index
-    @goods = Good.all.order("created_at DESC")
+    @goods = Good.all.order('created_at DESC')
   end
 
   def new
@@ -53,8 +53,7 @@ class GoodsController < ApplicationController
   end
 
   def move_to_index
-    unless current_user == @good.user
-      redirect_to root_path
-    end
+    redirect_to root_path unless current_user == @good.user
   end
+
 end
