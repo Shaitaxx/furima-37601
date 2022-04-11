@@ -52,10 +52,35 @@ RSpec.describe Order, type: :model do
         @order.valid?
         expect(@order.errors.full_messages).to include('Phonenumber is invalid. Input half-width numbers.')
       end
+      it '電話番号が9桁以下では購入できない' do
+        @order.phonenumber = '12345'
+        @order.valid?
+        expect(@order.errors.full_messages).to include('Phonenumber is invalid. Input half-width numbers.')
+      end
+      it '電話番号が12桁以上では購入できない' do
+        @order.phonenumber = '12345678901234567'
+        @order.valid?
+        expect(@order.errors.full_messages).to include('Phonenumber is invalid. Input half-width numbers.')
+      end
+      it '電話番号に半角数字以外が含まれている場合は購入できない（※半角数字以外が一文字でも含まれていれば良い）' do
+        @order.phonenumber = '123aaa123123'
+        @order.valid?
+        expect(@order.errors.full_messages).to include('Phonenumber is invalid. Input half-width numbers.')
+      end
       it 'tokenが空では登録できないこと' do
         @order.token = nil
         @order.valid?
         expect(@order.errors.full_messages).to include("Token can't be blank")
+      end
+      it 'userが紐付いていなければ購入できない' do
+        @order.user_id = nil
+        @order.valid?
+        expect(@order.errors.full_messages).to include("User can't be blank")
+      end
+      it 'itemが紐付いていなければ購入できない' do
+        @order.good_id = nil
+        @order.valid?
+        expect(@order.errors.full_messages).to include("Good can't be blank")
       end
     end
   end
