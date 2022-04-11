@@ -6,6 +6,7 @@ class Order
             format: { with: /\A\d{3}-\d{4}$|^\d{3}-\d{2}$|^\d{3}\z/,
                       message: 'is invalid. Input half-width character string of 3 digits hyphen 4 digits.' }
   validates :phonenumber, format: { with: /\A\d{10,11}\z/, message: 'is invalid. Input half-width numbers.' }
+  validates :region_id, numericality: { other_than: 1, message: "can't be blank" }
 
   with_options presence: true do
     validates :postcode, :region_id, :city, :address, :phonenumber, :user_id, :good_id, :token

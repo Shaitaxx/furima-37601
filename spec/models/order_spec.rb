@@ -32,6 +32,11 @@ RSpec.describe Order, type: :model do
         @order.valid?
         expect(@order.errors.full_messages).to include("Region can't be blank")
       end
+      it '都道府県に「---」が選択されている場合は購入できない' do
+        @order.region_id = 1
+        @order.valid?
+        expect(@order.errors.full_messages).to include("Region can't be blank")
+      end
       it '市区町村が必須であること。' do
         @order.city = ''
         @order.valid?
