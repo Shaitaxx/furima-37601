@@ -23,7 +23,7 @@
       </span>
     </div>
 
-    <% if user_signed_in? %>
+    <% if user_signed_in? && @good.purchase.nil? %>
       <% if current_user.id == @good.user.id %>
         <%= link_to "商品の編集", edit_good_path(@good), method: :get, class: "item-red-btn" %>
         <p class="or-text">or</p>
